@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container h1 {
+  text-align: center;
+  text-transform: uppercase;
+
+}
+
+.box {
+  text-align: center;
+  line-height: 80px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+}
+
+.board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 240px;
+  height: 240px;
+  flex-wrap: wrap;
+}

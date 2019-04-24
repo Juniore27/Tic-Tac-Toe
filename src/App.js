@@ -79,13 +79,27 @@
 
 import React, { Component } from 'react';
 import './App.css';
+import SetPlayerStatus from './components/SetPlayerStatus'
+
 
 class App extends Component {
 
   state = {
     board: Array(9).fill(null),
-    player: "X",
+    player: null,
     winner: null
+  }
+
+  reset = () => {
+    this.setState({
+      board: Array(9).fill(null),
+      player: null,
+      winner: null
+    })
+  }
+  handelPlayer = (player) => {
+
+    this.setState({ player })
   }
 
   checkWinner = () => {
@@ -102,51 +116,67 @@ class App extends Component {
 
     ]
 
+    this.checkMath(winLines)
+
+  }
+
+  checkMath = (winLines) => {
+    const { board, player } = this.state
+
     for (let index = 0; index < winLines.length; index++) {
 
       const [a, b, c] = winLines[index]
-      console.log(this.state.board[a])
-      if (this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]) {
+
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         alert("you won")
         this.setState({
-          winner: this.state.player
+          winner: player
         })
       }
 
     }
-
   }
 
 
   handelClick = (index) => {
-    let newBoard = this.state.board
-    if (this.state.board[index] === null && !this.state.winner) {
-      newBoard[index] = this.state.player
-      let newPlayer = this.state.player === "X" ? "0" : "X"
+    if (this.state.player) {
+      let newBoard = this.state.board
+      if (this.state.board[index] === null && !this.state.winner) {
+        newBoard[index] = this.state.player
+        let newPlayer = this.state.player === "X" ? "O" : "X"
 
-      this.setState({
-        board: newBoard,
-        player: newPlayer
-      })
-      this.checkWinner()
+        this.setState({
+          board: newBoard,
+          player: newPlayer
+        })
+        this.checkWinner()
+      }
     }
   }
-
-  render() {
-    console.log(null)
-
-    const Box = this.state.board.map((box, index) => <div
+  createBox = () => {
+    return this.state.board.map((box, index) => <div
       onClick={() => this.handelClick(index)}
       key={index}
       className="box">
       {box}
     </div>)
+  }
+  render() {
+
+
+
+
     return (
       <div className="container">
+
         <h1>Tic Tac Toe Game</h1>
+
+        <SetPlayerStatus handelPlayer={(e) => this.handelPlayer(e)} player={this.state.player} winner={this.state.winner} reset={this.reset} />
+
         <div className="board">
-          {Box}
+          {this.createBox()}
         </div>
+
       </div>
 
     )

@@ -28,3 +28,7 @@
   height: 240px;
   flex-wrap: wrap;
 }
+
+h2 {
+  text-align: center;
+}

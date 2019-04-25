@@ -87,14 +87,18 @@ class App extends Component {
   state = {
     board: Array(9).fill(null),
     player: null,
-    winner: null
+    winner: null,
+    number: 1,
+    draw: null
   }
 
   reset = () => {
     this.setState({
       board: Array(9).fill(null),
       player: null,
-      winner: null
+      winner: null,
+      number: 1,
+      draw: null
     })
   }
   handelPlayer = (player) => {
@@ -128,7 +132,7 @@ class App extends Component {
       const [a, b, c] = winLines[index]
 
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        alert("you won")
+
         this.setState({
           winner: player
         })
@@ -136,20 +140,34 @@ class App extends Component {
 
     }
   }
+  checkDraw = () => {
+    if (this.state.number === this.state.board.length) {
+      this.setState({
+        draw: true
+      })
+
+    }
+  }
 
 
   handelClick = (index) => {
+
+
     if (this.state.player) {
       let newBoard = this.state.board
       if (this.state.board[index] === null && !this.state.winner) {
         newBoard[index] = this.state.player
         let newPlayer = this.state.player === "X" ? "O" : "X"
-
+        let newNumber = this.state.number
+        newNumber++
         this.setState({
           board: newBoard,
-          player: newPlayer
+          player: newPlayer,
+          number: newNumber
         })
         this.checkWinner()
+        this.checkDraw()
+
       }
     }
   }
@@ -166,12 +184,14 @@ class App extends Component {
 
 
 
+
+
     return (
       <div className="container">
 
         <h1>Tic Tac Toe Game</h1>
 
-        <SetPlayerStatus handelPlayer={(e) => this.handelPlayer(e)} player={this.state.player} winner={this.state.winner} reset={this.reset} />
+        <SetPlayerStatus handelPlayer={(e) => this.handelPlayer(e)} player={this.state.player} winner={this.state.winner} draw={this.state.draw} reset={this.reset} />
 
         <div className="board">
           {this.createBox()}

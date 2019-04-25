@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './choosePlayer.css'
 class Player extends Component {
 
 
@@ -17,20 +17,20 @@ class Player extends Component {
     <form onSubmit={(e) => this.handelForm(e)}>
 
      <label>
-      Player X
-     <input type="radio" name="player" value="X" />
+      <span class="playerX">Player X</span>
+      <input type="radio" name="player" value="X" />
      </label>
 
      <label>
 
-      Player O
-     <input type="radio" name="player" value="O" />
+      <span class="playerY">Player O</span>
+      <input type="radio" name="player" value="O" />
 
      </label>
 
      <label>
 
-      <input type="submit" value="start" />
+      <input class="start" type="submit" value="start" />
      </label>
 
     </form>

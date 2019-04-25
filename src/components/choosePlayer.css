@@ -1,0 +1,51 @@
+.setPlayer label span.playerX {
+ color: green;
+ text-transform: uppercase;
+ font-size: 20px;
+ font-family: arial;
+ /* display: block; */
+ margin-right: 10px;
+
+}
+
+.setPlayer label span.playerY {
+ color: rgb(136, 43, 128);
+ text-transform: uppercase;
+ font-size: 20px;
+ font-family: arial;
+ margin-left: 20px;
+ margin-right: 10px;
+
+
+}
+
+.setPlayer {
+ position: relative;
+ margin-right: auto;
+ margin-left: auto;
+ width: 100vw;
+ /* background-color: green; */
+ text-align: center;
+ margin-top: 50px;
+}
+
+input.start {
+ position: absolute;
+ left: 50%;
+ top: 300%;
+ transform: translate(-50%);
+ display: block;
+ width: 15vw;
+ text-transform: uppercase;
+ padding: 5px 0;
+ letter-spacing: 5px;
+ background-color: rgb(255, 115, 0);
+ font-weight: bold;
+ color: black;
+ transition: .5s
+}
+
+input.start:hover {
+ color: white;
+ background-color: rgb(30, 158, 8);
+}
